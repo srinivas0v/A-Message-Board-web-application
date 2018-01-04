@@ -1,4 +1,8 @@
 # Online-Shopping-web-application
-In this project, I have used eBay Commerce Network API for Shopping. I have developed a trivial web application that allows customers to buy products.The eBay Commerce Network API ("ECN API") is a flexible way to access and recreate practically everything you see on Shopping.com. I have used the Search by keyword method and the Requesting category tree information -> Include all descendants in category tree method from the eBay Commerce Network Publisher API Use Cases.
-
-The search form has a menu to select a category, a text window to specify search keywords, and a submit button. The menu contains all sub-categories of the category "computers". Each product contains a link productOffersURL to the shopping.com web page that gives a detailed description of the product and a list of best offers from various sellers. So each product has a range minPrice - maxPrice of the prices offered by these sellers. I have ignored the list of offers and assumed that when we buy this product we pay the minPrice.For each chosen item, I have stored the Id, the name, the minPrice, the first image, and the productOffersURL
+In this project, I have written two PHP scrips login.php and board.php. The login.php script generates a form that has two text windows for username and password and a "Login" button. The board.php has a "Logout" button, a text area to write a message, a "New Post" button, and a list of messages. The board script prints all the messages in the database as a flat list ordered by date/time. For each posted message, it prints:
+The message ID.
+The username and the fullname of the person who posted the message.
+The date and time when this message was posted.
+If this is a reply to a message, the ID of this message.
+The message text.
+A button "Reply" to reply to this message.
