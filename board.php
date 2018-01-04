@@ -41,7 +41,7 @@ form {
 <?php
 session_start();
 try {
-    $dbpdo = new PDO("mysql:host=127.0.0.1:3306;dbname=board","root","",array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));    
+    $dbpdo = new PDO("mysql:host=127.0.0.1:3306;dbname=board","username","",array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));    
 }
 catch(PDOException $e)
 {
@@ -60,7 +60,7 @@ function post()
     if(!empty($post) && empty($reply)){
 try {
 
-    $dbpdo = new PDO("mysql:host=127.0.0.1:3306;dbname=board","root","",array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));    
+    $dbpdo = new PDO("mysql:host=127.0.0.1:3306;dbname=board","username","",array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));    
     $dbpdo->beginTransaction();
     $query2=$dbpdo->prepare('INSERT INTO `posts` (`id`, `replyto`, `postedby`, `datetime`, `message`) VALUES (:id, NULL,:name,:datet,:post);');
     $query2->bindValue(':id', $id, PDO::PARAM_STR);
@@ -91,7 +91,7 @@ function reply()
     if(!empty($post) && !empty($reply)){
 try {
 
-    $dbpdo = new PDO("mysql:host=127.0.0.1:3306;dbname=board","root","",array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));    
+    $dbpdo = new PDO("mysql:host=127.0.0.1:3306;dbname=board","username","",array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));    
     $dbpdo->beginTransaction();
     $query3=$dbpdo->prepare('INSERT INTO `posts` (`id`, `replyto`, `postedby`, `datetime`, `message`) VALUES (:id, :reply,:name,:datet,:post);');
     $query3->bindValue(':id', $id, PDO::PARAM_STR);
@@ -126,7 +126,7 @@ function display()
   {
     echo "<h3>Message Board</h3>";
 try {
-    $dbpdo = new PDO("mysql:host=127.0.0.1:3306;dbname=board","root","",array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));    
+    $dbpdo = new PDO("mysql:host=127.0.0.1:3306;dbname=board","username","",array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));    
     $query1=$dbpdo->prepare('SELECT posts.id,posts.postedby,users.fullname,posts.datetime,posts.replyto,posts.message FROM posts join users on users.username = posts.postedby ORDER BY UNIX_TIMESTAMP(`datetime`) DESC');
     //$query->bindValue(':username', $uname, PDO::PARAM_STR);
     $query1->execute();
